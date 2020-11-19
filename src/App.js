@@ -1,25 +1,56 @@
-import logo from './logo.svg';
+import React from 'react';
+import Card from './components/card';
+import Pagination from './components/pagination';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+export default class App extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            pokemones: [],
+            currentPage: 1,
+            pokemonPerPage: 10
+        }
+    }
 
-export default App;
+    componentDidMount() {
+        const limit = this.state.pokemonPerPage;
+        const url = 'https://pokeapi.co/api/v2/pokemon';
+        //Consumir la API de pokeapi
+        fetch(`${url}?limit=${limit}`)
+            .then(response => response.json())
+            .then(data => this.setState({pokemones: data.results}))
+            .catch( error => {
+              console.log(error);
+            })
+    }
+
+    fetchPage = (requestPage) => {
+      //1. Completar el método para poder obtener los pokemones dependiendo de la página solicitada
+      const limit = this.state.pokemonPerPage;
+      const url = 'https://pokeapi.co/api/v2/pokemon';
+      fetch(`${url}?limit=${limit}&offset=${(requestPage - 1) * 10}`)
+            .then(response => response.json())
+            .then(data => this.setState({pokemones: data.results}))
+            .catch( error => {
+              console.log(error);
+            })
+    }
+
+    render() {
+        return (
+            <div className="pokedex-container">
+              {
+                this.state.pokemones.map( (pokemon, index) => {      
+                  //2. Solucionar el problema de obtener las imagenes de los pokemones con id < 10, > 10, > 100            
+                  let pokemonImg = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/00${index + 1}.png`
+                  return (
+                    <Card key={index + 1} name={pokemon.name} img={pokemonImg} />
+                  )
+                })
+              }
+              <Pagination fetchPageFn={this.fetchPage} />
+            </div>
+        )
+    }
+}
