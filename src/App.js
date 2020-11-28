@@ -15,7 +15,8 @@ export default class App extends React.Component {
             pokemones: [],
             currentPage: 1,
             pokemonPerPage: 10,
-            pokemon:""
+            pokemon:"",
+            pag:[]
         }
     }
 
@@ -29,9 +30,9 @@ export default class App extends React.Component {
             .then(data => this.setState({pokemones: data.results, next: data.next, previous: data.previous, count: data.count}))
             .catch(error => {
                 console.log(error);
-            })
+            }) 
             //
-    }
+           }
     numpoke(info) {
         let num = ""
         let con = 0
@@ -48,7 +49,7 @@ export default class App extends React.Component {
 
     fetchPage = (requestPage) => {
 
-        let up=this.state.numpag-4;
+        let up=requestPage;
 
 
         // 1. Completar el método para poder obtener los pokemones dependiendo de la
@@ -129,11 +130,30 @@ export default class App extends React.Component {
     ret=(op)=>{
         this.setState({ti:op})
     }
-    render() {
-        const max = {count:this.state.count,
-                    poke:this.state.pokemonPerPage,
-                    up:this.state.currentPage
+    loop(ma){
+        if (ma){
+        let x=this.state.numpag
+        let y=10+this.state.numpag;
+        let w = []
+        do {
+            if ((ma >= this.state.currentPage+x) ) {
+                w.push({
+                    num:x,
+                    o:this.state.currentPage+x,
+                    pa:this.state.numpag+x,
+              
                 }
+                    );
+                }
+            x++
+        } while (x<y);
+        this.setState({pag:w})
+    }
+    }
+    
+    render() {
+       
+        
         return (
             <div>
                 {this.state.ti
@@ -150,7 +170,7 @@ export default class App extends React.Component {
                 ?
                 (this.state.pokemones.map(pokemon => {
                     // 2. Solucionar el problema de obtener las imagenes de los pokemones con id <
-                    // 10, > 10, > 100
+                    // 10, > 10, > 100 
                     let numpoke = this.numpoke(pokemon.url);
                     let pokemonImg = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${numpoke}.svg`;
                     return (
@@ -174,12 +194,13 @@ export default class App extends React.Component {
                 (
                 <Pagination 
                     key={"poke"}
+                    cont= {this.state.pag}
                     fetchPageFn={this.fetchPage} 
                     pag={this.pag} 
                     urlp={this.state.previous}
                     urln={this.state.next}
                     numpag={this.state.numpag}
-                    count={max}/>)
+                  />)
                     :
                     null
                 }
