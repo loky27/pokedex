@@ -48,8 +48,8 @@ export default class App extends React.Component {
 
     fetchPage = (requestPage) => {
 
-        let up=this.state.numpag;
-            up=requestPage - 4;
+        let up=this.state.numpag-4;
+
 
         // 1. Completar el método para poder obtener los pokemones dependiendo de la
         // actualizar el estado con la página solicitada
