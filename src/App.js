@@ -36,7 +36,7 @@ export default class App extends React.Component {
         let num = ""
         let con = 0
         for (let index = 0; index < info.length; index++) {
-            if (con === 6 && info[index] != "/") {
+            if ((con === 6) && (info[index] != "/")) {
                 num += info[index]
             }
             if (info[index] === "/") {
