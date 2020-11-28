@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Item from"./type/type"
 function Pagination(props){
     const pokemonArray = ["","","","","","","","","",""]; 
     const max =props.count.count/props.count.poke
@@ -18,7 +18,8 @@ function Pagination(props){
                 pokemonArray.map( (e,index) => {
                     if ( (max+4 > props.count.up+index)&&((props.numpag+1+index)>0) ) {
                         return (
-                            <div className="item" onClick={() => props.fetchPageFn(index+props.numpag)}>{e+index +props.numpag+1}</div>)
+                            <Item op={props.fetchPageFn} nmae={e+index +props.numpag+1} value={index+props.numpag} />
+                            )
                     }
                  
                 })
