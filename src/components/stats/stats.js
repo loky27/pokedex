@@ -1,15 +1,15 @@
 import React from 'react';
-import { Container , Row , Col} from 'react-bootstrap';
+
 function Stats(props){
     return (
-            <Row>
-                <Col>
+            <div>
+                <div>
                 <h2>{props.stats.stat.name}</h2> 
-                </Col>
-                <Col>
+                </div>
+                <div>
                 <p>{props.stats.base_stat}</p>
-                </Col>
-            </Row>
+                </div>
+            </div>
     )
 }
 
