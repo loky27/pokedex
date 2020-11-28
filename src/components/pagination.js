@@ -12,9 +12,9 @@ render(){
             <div onClick={() => this.props.pag(this.props.urlp,false)}>pre</div>:
             null
         }
-                {this.props.cont.map(ite =>{
+                {/*this.props.cont.map(ite =>{
                     <Item op={this.props.fetchPageFn} name={ite.o} value={ite.pa} />
-                })
+                })*/
 }
             {this.props.urln
             ?
