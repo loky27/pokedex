@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Pagination(props){
-    const pokemonArray = Array.apply(null, Array(10)).map(() => {}); 
+    const pokemonArray = ["","","","","","","","","",""]; 
     const max =props.count.count/props.count.poke
     //Simular arreglo de 10 elementos
     //3. Mostrar las páginas disponibles
@@ -15,7 +15,7 @@ function Pagination(props){
             null
         }
             {
-                pokemonArray.map( (index) => {
+                pokemonArray.map( (e,index) => {
                     if ( (max+4 > props.count.up+index)&&((props.numpag+1+index)>0) ) {
                         return (
                             <div className="item" onClick={() => props.fetchPageFn(index+props.numpag)}>{index +props.numpag+1}</div>)
