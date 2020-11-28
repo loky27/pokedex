@@ -1,4 +1,4 @@
-import Item from"./item/item"
+//import Item from"./item/item"
 import React from "react";
 class pagination extends React.Component {
    
