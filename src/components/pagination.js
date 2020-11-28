@@ -15,7 +15,7 @@ function Pagination(props){
             null
         }
             {
-                pokemonArray.map( (e, index) => {
+                pokemonArray.map( (index) => {
                     if ( (max+4 > props.count.up+index)&&((props.numpag+1+index)>0) ) {
                         return (
                             <div className="item" onClick={() => props.fetchPageFn(index+props.numpag)}>{index +props.numpag+1}</div>)
