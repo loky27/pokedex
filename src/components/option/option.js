@@ -4,8 +4,7 @@ function Option(props){
     return (
         <div className="stats">
             <div>
-                 
-                <div onClick={() => props.op(true)}><h4>{"regresar"}</h4></div>
+                <div className="btn btn-primary" onClick={() => props.op(true)}><h4>{"regresar"}</h4></div>
             </div>
         </div>
         

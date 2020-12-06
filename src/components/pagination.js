@@ -6,7 +6,7 @@ render(){
     /*const pokemonArray = Array.apply(null, Array(10)).map(() => {}); */
     
     return (
-        <div className="pagination-row">
+        <div className="pagination-row col-12">
             {this.props.urlp
             ?
             <div onClick={() => this.props.pag(this.props.urlp,false)}>pre</div>:
