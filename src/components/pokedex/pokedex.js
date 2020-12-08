@@ -1,6 +1,6 @@
 import React from 'react';
-import Card from '../card';
-import Pagination from "../pagination";
+import Card from '../card/card';
+import Pagination from "../pagination/pagination";
 import Opcard from "../option-card/opcard";
 export default class Pokedex extends React.Component {
     constructor() {

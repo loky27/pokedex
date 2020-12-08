@@ -4,7 +4,7 @@ function Card(props){
     const image={
         width:"18rem" ,
         height:"18rem"
-    }
+    }   
     return (
         <div className="row border border-primary m-5 col-5" >
             <img src={props.img} alt={props.name} style={image}
