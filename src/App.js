@@ -11,7 +11,7 @@ import Nav from "./components/nav/nav";
 import Pokedex from "./components/pokedex/pokedex";
 import LogIn from "./components/logIn/logIn"
 import PrivateRoute from "./components/PrivateRouter/PrivateRouter"
-import Panel from "./components/panel/panel"
+//import Panel from "./components/panel/panel"
 
 //import React from "react";
 const pokemones = store.getState();
