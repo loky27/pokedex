@@ -1,5 +1,3 @@
-import Pokedex from "./components/pokedex/pokedex";
-import Nav from "./components/nav/nav";
 import store from "./redux/store"
 import firebase, {auth} from "./components/firebase/config";
 import React, {useState} from "react";
@@ -9,7 +7,12 @@ import {
   Route,
   useHistory
 } from "react-router-dom";
+import Nav from "./components/nav/nav";
+import Pokedex from "./components/pokedex/pokedex";
 import LogIn from "./components/logIn/logIn"
+import PrivateRoute from "./components/PrivateRouter/PrivateRouter"
+import Panel from "./components/panel/panel"
+
 //import React from "react";
 const pokemones = store.getState();
 console.log(pokemones)
@@ -55,6 +58,9 @@ export default function App() {
           <Route path ="/logIn" exact>
             <LogIn signInGoogle={signInGoogle} signInFacebook={signInFacebook} />
           </Route>
+          <PrivateRoute path="/panel" exact logged={isLogged} user={user}>
+           {/* <Panel />*/}
+          </PrivateRoute>
           <Route path="/about">
             <About />
           </Route>
