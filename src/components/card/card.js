@@ -6,7 +6,7 @@ function Card(props){
         height:"18rem"
     }   
     return (
-        <div className="row border border-primary m-5 col-5" >
+        <div className="row border border-primary m-2 col-5" >
             <img src={props.img} alt={props.name} style={image}
              className="shadow  mt-3 bg-white rounded col"/>
             <div className="col-12 m-2 row">

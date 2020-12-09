@@ -7,8 +7,9 @@ export default function PrivateRoute(props){
     return (
         <Route path={props.path} render={
             () => props.logged ? 
-            (React.cloneElement(props.children, {user: props.user})) :
-             (<h1>No estas loggeado</h1>)
+            (React.cloneElement(props.children, {user: props.user}))
+            :
+            (<h1 className="mt-5">No estas loggeado</h1>)
         } />
     )
 }

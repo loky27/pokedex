@@ -10,15 +10,15 @@ export default function Nav() {
               <Link to="/">Home</Link>
             </li>
             <li className="nav-item active mr-2">
-              <Link to="/about">About</Link>
+              <Link to="/users">Users</Link>
             </li>
             <li className="nav-item active">
-              <Link to="/users">Users</Link>
+              <Link to="/pokedex">pokedex</Link>
             </li>
           </ul>
           <div className="d-flex justify-content-around">
             <Link className="m-0 mr-3 btn btn-primary " to ="/logIn">Log in</Link>
-            <Link className="m-0 btn btn-outline-primary">Sign up</Link>
+            <Link className="m-0 btn btn-outline-primary" to ="/singUp" >Sign up</Link>
           </div>
         </nav>
     </header>

@@ -2,7 +2,6 @@ import store from "./redux/store"
 import firebase, {auth} from "./components/firebase/config";
 import React, {useState} from "react";
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
   useHistory
@@ -11,8 +10,8 @@ import Nav from "./components/nav/nav";
 import Pokedex from "./components/pokedex/pokedex";
 import LogIn from "./components/logIn/logIn"
 import PrivateRoute from "./components/PrivateRouter/PrivateRouter"
-//import Panel from "./components/panel/panel"
-
+import Panel from "./components/panel/panel"
+import SingUp from "./components/singUp/singUp"
 //import React from "react";
 const pokemones = store.getState();
 console.log(pokemones)
@@ -30,7 +29,7 @@ export default function App() {
       let user = result.user;
       setUser(user);
       setIsLogged(true);
-      history.push('/panel');
+      history.push("/panel");
     }).catch(error => {
       setIsLogged(false);
       console.log(error);
@@ -48,43 +47,45 @@ export default function App() {
       console.log(error);
     })
   }
+    let email={
+      email:"hef6666@gmail.com"
+      ,pasword:"1234ewef"
+    };
+    const login = (event) => {
+        event.preventDefault();
+        auth
+          .signInWithEmailAndPassword(`${email.email}`, `${email.pasword}`)
+          .then((response) => {
+              console.log(response);
+              history.push("/panel");
+          }
+          )
+          .catch((error) => console.log(error));
+        }
   return (
-    <Router>
+
       <div>
           <Nav/>
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path ="/logIn" exact>
-            <LogIn signInGoogle={signInGoogle} signInFacebook={signInFacebook} />
-          </Route>
-          <PrivateRoute path="/panel" exact logged={isLogged} user={user}>
-           {/* <Panel />*/}
+        <PrivateRoute path="/panel" logged={isLogged} user={user}>
+            <Panel />
           </PrivateRoute>
-          <Route path="/about">
-            <About />
+          <Route path="/pokedex">
+          <Pokedex/>;
           </Route>
-          <Route path="/users">
-            <Users />
+          <Route path="/singUp">
+          <SingUp  login={login} date={email}/>
+          </Route>
+          <Route path="/login">
+          <LogIn signInGoogle={signInGoogle} signInFacebook={signInFacebook} login={login} date={email}/>
           </Route>
           <Route path="/">
-            <Home />
+          <LogIn signInGoogle={signInGoogle} signInFacebook={signInFacebook} login={login} date={email}/>
           </Route>
         </Switch>
       </div>
-    </Router>
+   
   );
 }
-
-function Home() {
-  return <Pokedex/>;
-}
-
-function About() {
-  return <h2>About</h2>;
-}
-
-function Users() {
-  return <h2>Users</h2>;
-}
-
